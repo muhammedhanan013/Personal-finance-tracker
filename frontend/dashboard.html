@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard - FinanceTrack</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body class="dashboard-body">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="sidebar-logo">
+            💰 FinanceTrack
+        </div>
+
+        <nav>
+
+            <a href="#" class="active">
+                📊 Dashboard
+            </a>
+
+            <a href="#transactions">
+                💸 Transactions
+            </a>
+
+            <a href="#budget">
+                💰 Budget
+            </a>
+
+            <a href="#savings">
+                🎯 Savings Goals
+            </a>
+
+            <a href="#ai">
+                🤖 AI Suggestions
+            </a>
+
+        </nav>
+
+        <button id="logoutBtn" class="logout-btn">
+            🚪 Logout
+        </button>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="dashboard-main">
+
+        <header class="dashboard-header">
+
+            <div>
+
+                <p class="welcome-text">
+                    Welcome back 👋
+                </p>
+
+                <h1 id="userName">
+                    My Dashboard
+                </h1>
+
+            </div>
+
+            <div class="profile">
+                👤
+            </div>
+
+        </header>
+
+
+        <!-- SUMMARY CARDS -->
+
+        <section class="summary-grid">
+
+            <div class="summary-card balance-card">
+
+                <div class="summary-top">
+                    <span>Total Balance</span>
+                    <span>💰</span>
+                </div>
+
+                <h2 id="balance">
+                    ₹0
+                </h2>
+
+                <p>
+                    Available balance
+                </p>
+
+            </div>
+
+
+            <div class="summary-card income-card">
+
+                <div class="summary-top">
+                    <span>Total Income</span>
+                    <span>📈</span>
+                </div>
+
+                <h2 id="income">
+                    ₹0
+                </h2>
+
+                <p>
+                    This month
+                </p>
+
+            </div>
+
+
+            <div class="summary-card expense-card">
+
+                <div class="summary-top">
+                    <span>Total Expenses</span>
+                    <span>📉</span>
+                </div>
+
+                <h2 id="expense">
+                    ₹0
+                </h2>
+
+                <p>
+                    This month
+                </p>
+
+            </div>
+
+
+            <div class="summary-card savings-card">
+
+                <div class="summary-top">
+                    <span>Savings</span>
+                    <span>🎯</span>
+                </div>
+
+                <h2 id="savings">
+                    ₹0
+                </h2>
+
+                <p>
+                    This month
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- QUICK ACTIONS -->
+
+        <section class="dashboard-section">
+
+            <div class="section-header">
+
+                <h2>Quick Actions</h2>
+
+            </div>
+
+            <div class="quick-actions">
+
+                <button
+                    class="quick-btn"
+                    onclick="openTransactionForm('income')"
+                >
+                    📈 Add Income
+                </button>
+
+                <button
+                    class="quick-btn"
+                    onclick="openTransactionForm('expense')"
+                >
+                    💸 Add Expense
+                </button>
+
+                <button
+                    class="quick-btn"
+                    onclick="openBudgetForm()"
+                >
+                    💰 Set Budget
+                </button>
+
+                <button
+                    class="quick-btn"
+                    onclick="openSavingsForm()"
+                >
+                    🎯 Add Goal
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- TRANSACTION FORM -->
+
+        <section
+            class="dashboard-section"
+            id="transactions"
+        >
+
+            <div class="section-header">
+
+                <h2>Add Transaction</h2>
+
+            </div>
+
+            <form id="transactionForm" class="finance-form">
+
+                <select id="transactionType" required>
+
+                    <option value="">
+                        Select Type
+                    </option>
+
+                    <option value="income">
+                        Income
+                    </option>
+
+                    <option value="expense">
+                        Expense
+                    </option>
+
+                </select>
+
+                <input
+                    type="number"
+                    id="transactionAmount"
+                    placeholder="Amount ₹"
+                    min="1"
+                    required
+                >
+
+                <input
+                    type="text"
+                    id="transactionCategory"
+                    placeholder="Category"
+                    required
+                >
+
+                <input
+                    type="text"
+                    id="transactionDescription"
+                    placeholder="Description"
+                >
+
+                <input
+                    type="date"
+                    id="transactionDate"
+                    required
+                >
+
+                <button class="primary-btn">
+                    Add Transaction
+                </button>
+
+            </form>
+
+        </section>
+
+
+        <!-- RECENT TRANSACTIONS -->
+
+        <section class="dashboard-section">
+
+            <div class="section-header">
+
+                <h2>Recent Transactions</h2>
+
+            </div>
+
+            <div
+                id="transactionList"
+                class="transaction-list"
+            >
+
+                <div class="empty-state">
+                    No transactions yet.
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- BUDGET -->
+
+        <section
+            class="dashboard-section"
+            id="budget"
+        >
+
+            <div class="section-header">
+
+                <h2>Monthly Budget</h2>
+
+            </div>
+
+            <div class="budget-card">
+
+                <div>
+
+                    <p>Budget</p>
+
+                    <h2 id="budgetAmount">
+                        ₹0
+                    </h2>
+
+                </div>
+
+                <div>
+
+                    <p>Remaining</p>
+
+                    <h2 id="remainingBudget">
+                        ₹0
+                    </h2>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- SAVINGS GOALS -->
+
+        <section
+            class="dashboard-section"
+            id="savings"
+        >
+
+            <div class="section-header">
+
+                <h2>Savings Goals</h2>
+
+            </div>
+
+            <div
+                id="savingsGoals"
+                class="goals-grid"
+            >
+
+                <div class="empty-state">
+                    No savings goals yet.
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- AI -->
+
+        <section
+            class="dashboard-section"
+            id="ai"
+        >
+
+            <div class="ai-card">
+
+                <div class="ai-icon">
+                    🤖
+                </div>
+
+                <div>
+
+                    <h2>
+                        AI Financial Assistant
+                    </h2>
+
+                    <p id="aiSuggestion">
+                        Add some transactions to receive
+                        personalized financial suggestions.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <footer class="dashboard-footer">
+
+            <p>
+                © 2026 FinanceTrack
+            </p>
+
+        </footer>
+
+    </main>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
